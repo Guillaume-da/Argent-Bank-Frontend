@@ -1,11 +1,48 @@
 import { React } from 'react'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import Welcome from '../components/Welcome'
+import Loader from '../components/Loader'
 import styled from 'styled-components'
+import { /* reset,  */getUserName } from '../features/userName/userNameSlice'
 
 const Profile = () => {
-	return(
+	const navigate = useNavigate()
+	const dispatch = useDispatch()
+
+	const {user} = useSelector((state) => state.auth)
+	const { userName, isLoading, isError, message } = useSelector(
+		(state) => state.userName
+	)
+
+	const firstName = userName?.body?.firstName
+	const lastName = userName?.body?.lastName
+    
+	useEffect(() => {
+		if (isError) {
+			console.log(message)
+		}
+
+		if(!user) {
+			navigate('/login')
+		}
+
+		dispatch(getUserName())
+
+		// return () => {
+		// 	dispatch(reset())
+		// }
+
+	}, [user, navigate, isError, message, dispatch])
+
+	if (isLoading) {
+		return <Loader />
+	}
+
+	const content = (
 		<MainLabel>
-			<Welcome firstNameValue='Steve' lastNameValue='Rogers'/>
+			<Welcome firstNameValue={firstName} lastNameValue={lastName}/>
 			<PageTitle>Accounts</PageTitle>
 			<SectionLabel>
 				<WrapperDivLabel>
@@ -39,6 +76,9 @@ const Profile = () => {
 			</SectionLabel>
 		</MainLabel>
 	)
+    
+	if(user) return content
+    
 }
 
 const MainLabel = styled.main`

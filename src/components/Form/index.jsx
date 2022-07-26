@@ -1,18 +1,74 @@
-import { React} from 'react'
+import { React, useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+// import { getUserName} from '../../features/userName/userNameSlice'
+import { toast } from 'react-toastify'
+import Loader from '../Loader'
+import 'react-toastify/dist/ReactToastify.css'
+
+import { login, reset } from '../../features/auth/authSlice'
 import styled from 'styled-components'
 
 const Form = () => {
+	const [formData, setFormData] = useState({
+		email: '',
+		password: '',
+	})
+    
+	const { email, password } = formData
+    
+	const navigate = useNavigate()
+	const dispatch = useDispatch()
+    
+	const { user, isLoading, isError, isSuccess, message } = useSelector(
+		(state) => state.auth
+	)
+  
+	useEffect(() => {
+		if (isError) {
+			toast.error(message)
+		}
+		if (isSuccess || user) {
+			toast.success('You are now connected', {toastId: 'loginSuccess'}, {autoClose: 1500, hideProgressBar: true})
+			
+			navigate('/profile')
+		}
+		dispatch(reset())
+	}, [user, isError, isSuccess, message, navigate, dispatch])
+    
+	const onChange = (e) => {
+		setFormData((prevState) => ({
+			...prevState,
+			[e.target.name]: e.target.value,
+		}))
+	}
+    
+	const onSubmit = (e) => {
+		e.preventDefault()
+    
+		const userData = {
+			email,
+			password,
+		}
+    
+		dispatch(login(userData))
+	}
+	// const notify = () => toast()
+      
+	if (isLoading) {
+		return <Loader />
+	}
       
 	return(
         
-		<form>
+		<form onSubmit={onSubmit}>
 			<DivLabel>
 				<FormLabel htmlFor="email">Username</FormLabel>
-				<InputLabel type='email' id='email' name='email' value=''  required/>
+				<InputLabel type='email' id='email' name='email' value={email} onChange={onChange} required/>
 			</DivLabel>
 			<DivLabel>
 				<FormLabel htmlFor="password">Password</FormLabel>
-				<InputLabel type="password" id="password" name='password' value='' required/>
+				<InputLabel type="password" id="password" name='password' value={password} onChange={onChange} required/>
 			</DivLabel>
 			<RememberMe>
 				<InputLabel type="checkbox" id="remember-me" />
@@ -24,7 +80,6 @@ const Form = () => {
 		</form>
 	)
 }
-
 
 const DivLabel = styled.div`
     display: flex;

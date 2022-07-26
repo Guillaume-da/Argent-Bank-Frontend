@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import { React, useState} from 'react'
+import { useDispatch/* , useSelector  */} from 'react-redux'
+import { modifyUserName} from '../../features/userName/userNameSlice'
 import styled from 'styled-components'
 
 const Welcome = (props) => {
@@ -7,15 +9,36 @@ const Welcome = (props) => {
 	const lastName = props.lastNameValue
 
 	const [isClicked, setIsClicked] = useState(false)
+	
+	// const token = useSelector((state) => state.auth.user.body.token)
+
+	const dispatch = useDispatch()
+
+	const onChange = (e) => {
+		e.preventDefault()
+		console.log('onChange',e)
+		
+	}
+
+	const onSubmit = (e) => {
+		e.preventDefault()
+		
+		const userData = {
+			'firstName': e.target[0].value,
+			'lastName': e.target[1].value,
+		}
+		console.log(userData)
+		dispatch(modifyUserName(userData))
+	}
 
 	return (
 		<DivLabel>
 			{isClicked ? (
 				<div>
 					<h1>Welcome back</h1>
-					<form>
-						<InputLabel type='text' id='newFirstName' name='newFirstName' defaultValue={firstName} placeholder={firstName} ></InputLabel>
-						<InputLabel type='text' id='newLastName' name='newLastName' defaultValue={lastName} placeholder={lastName} ></InputLabel>
+					<form onSubmit={onSubmit} >
+						<InputLabel type='text' id='newFirstName' name='newFirstName' defaultValue={firstName} placeholder={firstName} onChange={onChange}></InputLabel>
+						<InputLabel type='text' id='newLastName' name='newLastName' defaultValue={lastName} placeholder={lastName} onChange={onChange}></InputLabel>
 						<ButtonLabel type='submit'>Save</ButtonLabel>
 						<ButtonLabel className="red" onClick={() => setIsClicked(!isClicked)}>Cancel</ButtonLabel>
 					</form>

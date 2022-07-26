@@ -4,9 +4,26 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import {UserCircle} from '@styled-icons/fa-solid'
 import {SignOut} from '@styled-icons/octicons/SignOut'
+import { useSelector, useDispatch } from 'react-redux'
+import { logout, reset } from '../../features/auth/authSlice'
+import { toast } from 'react-toastify'
 
 const Header = () => {
   
+	const dispatch = useDispatch()
+	const { user } = useSelector((state) => state.auth)
+
+	const { userName, /* isLoading, isError, message  */} = useSelector(
+		(state) => state.userName
+	)
+
+	const firstName = userName?.body?.firstName
+
+	const onLogout = () => {
+		dispatch(logout())
+		dispatch(reset())
+		toast.success('You are now disconnected')
+	}
   
 	return (
 		<header>
@@ -18,22 +35,22 @@ const Header = () => {
 					/>
 				</Link>
 				<Title>Argent Bank</Title>
-				
-				<DivLabel>
-					<SpanLabel><UserIcon /> Steve Rogers</SpanLabel>
-					<LinkLabel to="/" >
-						<SignOutIcon />
+				{user ? (
+					<DivLabel>
+						<SpanLabel><UserIcon /> {firstName}</SpanLabel>
+						<LinkLabel to="/" onClick={onLogout}>
+							<SignOutIcon />
 							Sign Out
-					</LinkLabel>
-				</DivLabel>
-				
-				<div>
-					<LinkLabel to="/login">
-						<UserIcon />
+						</LinkLabel>
+					</DivLabel>
+				) : (
+					<div>
+						<LinkLabel to="/login">
+							<UserIcon />
 							Sign In
-					</LinkLabel>
-				</div>
-				
+						</LinkLabel>
+					</div>
+				)}
 			</NavLabel>
 		</header>
 	)
