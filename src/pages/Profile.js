@@ -3,6 +3,7 @@ import Welcome from '../components/Welcome'
 import styled from 'styled-components'
 
 const Profile = () => {
+	
 	return(
 		<MainLabel>
 			<Welcome firstNameValue='Steve' lastNameValue='Rogers'/>

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
-
+import { Provider } from 'react-redux'
 
 const GlobalStyle = createGlobalStyle`
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -33,11 +33,13 @@ const GlobalStyle = createGlobalStyle`
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
 	<React.StrictMode>
-		<GlobalStyle />
-		<Router>
-			<Routes>
-				<Route path="/*" element={<App />} />
-			</Routes>
-		</Router>
+		<Provider /* store={Store} */>
+			<GlobalStyle />
+			<Router>
+				<Routes>
+					<Route path="/*" element={<App />} />
+				</Routes>
+			</Router>
+		</Provider>
 	</React.StrictMode>
 )

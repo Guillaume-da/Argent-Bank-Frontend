@@ -20,7 +20,6 @@ const Form = () => {
 			</RememberMe>
                     
 			<ButtonLabel type='submit' /* onClick={notify} */>Sign In</ButtonLabel>
-			
 		</form>
 	)
 }

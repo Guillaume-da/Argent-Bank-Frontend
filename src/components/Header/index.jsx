@@ -7,7 +7,6 @@ import {SignOut} from '@styled-icons/octicons/SignOut'
 
 const Header = () => {
   
-  
 	return (
 		<header>
 			<NavLabel>

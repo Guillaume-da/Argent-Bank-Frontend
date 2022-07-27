@@ -1,6 +1,7 @@
 import { React } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import Private from './components/Private'
 import Home from './pages/Home'
 import SignIn from './pages/SignIn'
 import Profile from './pages/Profile'
@@ -15,7 +16,10 @@ function App() {
 			<Routes location={location} key={location.pathname}>
 				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<SignIn />} />
-				<Route path="/profile" element={<Profile />} />
+				<Route path="/private" element={<Private />}>
+					<Route path="/private/profile" element={<Profile />} />
+				</Route>
+				
 				{/* <Route path="*" element={<Error />} /> */}
 			</Routes> 
 			<Footer />
