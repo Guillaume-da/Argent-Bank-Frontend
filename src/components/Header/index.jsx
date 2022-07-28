@@ -11,6 +11,7 @@ const Header = () => {
 	const dispatch = useDispatch()
 	const isLoggedIn = useSelector(state => state.currentUser.isLoggedIn)
 	console.log(isLoggedIn)
+
 	return (
 		<header>
 			<NavLabel>

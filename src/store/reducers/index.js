@@ -8,8 +8,7 @@ export const appReducer = combineReducers({
 
 const rootReducer = (state, action) => {
 	if (action.type === 'USER_LOGOUT') {
-		const { routing } = state
-		state = { routing } 
+		return appReducer(undefined, action)
 	}
 	
 	return appReducer(state, action)

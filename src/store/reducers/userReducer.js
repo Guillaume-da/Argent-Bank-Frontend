@@ -23,16 +23,7 @@ const userReducer = (state = userState, action) => {
 	case AuthActionType.LOGIN_FAIL:
 		return state
 	case AuthActionType.USER_LOGOUT:
-		return {
-			isLoggedIn: false,
-			user: {
-				'status': null,
-				'message': '',
-				'body': {
-					'token': ''
-				}
-			}
-		}
+		return userState
 	default:
 		return state
 	}
