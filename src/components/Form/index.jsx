@@ -95,6 +95,7 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(LoginAuthAction(userState))
 		},
 	}
+	
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form)

@@ -13,5 +13,11 @@ const LoginAuthAction = (userState) => {
 		}
 	}
 }
+const LogoutAuthAction = () => {
+	return async (dispatch) => {
+		dispatch({type: AuthActionType.USER_LOGOUT, payload: {} })
+	}
+}
 
-export { LoginAuthAction, AuthActionType}
+
+export { LoginAuthAction, LogoutAuthAction, AuthActionType}
