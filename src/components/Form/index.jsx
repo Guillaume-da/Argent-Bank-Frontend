@@ -1,18 +1,45 @@
-import { React} from 'react'
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+import React, {useState} from 'react'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
+import {LoginAuthAction} from '../../store/actions/AuthAction'
 
-const Form = () => {
+const Form = (props) => {
+	const {user, login} = props
+	const[userState, setUserState] = useState({})
       
 	return(
         
-		<form>
+		<form onSubmit={(event) => {
+			event.preventDefault()
+			login(userState)
+		}}>
 			<DivLabel>
 				<FormLabel htmlFor="email">Username</FormLabel>
-				<InputLabel type='email' id='email' name='email' value=''  required/>
+				<InputLabel 
+					type='email' 
+					id='email' 
+					name='email' 
+					placeholder='Write your email here' 
+					onChange={ (event)=> {
+						const email = event.target.value
+						setUserState({ ...userState, ...{ email }})
+					}} 
+					required/>
 			</DivLabel>
 			<DivLabel>
 				<FormLabel htmlFor="password">Password</FormLabel>
-				<InputLabel type="password" id="password" name='password' value='' required/>
+				<InputLabel 
+					type="password" 
+					id="password" 
+					name='password' 
+					placeholder='Write your password here' 
+					onChange={ (event)=> {
+						const password = event.target.value
+						setUserState({ ...userState, ...{ password }})
+					}} 
+					required/>
 			</DivLabel>
 			<RememberMe>
 				<InputLabel type="checkbox" id="remember-me" />
@@ -56,5 +83,18 @@ const InputLabel = styled.input`
     padding: 5px;
     font-size: 1.2rem;
 `
+const mapStateToProps = (state) => {
+	return {
+		user: state,
+	}
+}
 
-export default Form
+const mapDispatchToProps = (dispatch) => {
+	return {
+		login: (userState)=> {
+			dispatch(LoginAuthAction(userState))
+		},
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form)
