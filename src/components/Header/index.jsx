@@ -7,10 +7,12 @@ import {UserCircle} from '@styled-icons/fa-solid'
 import {SignOut} from '@styled-icons/octicons/SignOut'
 import {LogoutAuthAction} from '../../store/actions/AuthAction'
 
+
 const Header = () => {
 	const dispatch = useDispatch()
 	const isLoggedIn = useSelector(state => state.currentUser.isLoggedIn)
 	
+
 	return (
     
 		<header>

@@ -19,10 +19,9 @@ const LoginAuthAction = (userState, navigate, setErrorHandler) => {
 					type: AuthActionType.LOGIN_FAIL,
 					payload: error.response.data.message,
 				})
-				toast.error(data.message)
+				toast.error(data.message, {toastId: 'loginFailed'}, {autoClose: 1500, hideProgressBar: true})
 			}
 			setErrorHandler({ hasError: true, message: error.response.data.message })
-			toast.error(error.response.data.message)
 		}
 	}
 }
