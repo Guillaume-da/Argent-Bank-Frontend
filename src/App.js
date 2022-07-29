@@ -20,7 +20,6 @@ function App() {
 				<Route path="/private" element={<Private />}>
 					<Route path="/private/profile" element={<Profile />} />
 				</Route>
-				
 				{/* <Route path="*" element={<Error />} /> */}
 			</Routes> 
 			<Footer />

@@ -13,24 +13,27 @@ const Welcome = (props) => {
 			{isClicked ? (
 				<div>
 					<h1>Welcome back</h1>
-					<form>
+					<FormLabel>
 						<InputLabel type='text' id='newFirstName' name='newFirstName' defaultValue={firstName} placeholder={firstName} ></InputLabel>
 						<InputLabel type='text' id='newLastName' name='newLastName' defaultValue={lastName} placeholder={lastName} ></InputLabel>
 						<ButtonLabel type='submit'>Save</ButtonLabel>
 						<ButtonLabel className="red" onClick={() => setIsClicked(!isClicked)}>Cancel</ButtonLabel>
-					</form>
+					</FormLabel>
 				</div>
-                
 			) : (
 				<div>
 					<h1>Welcome back<br />{firstName} {lastName}!</h1>
 					<ButtonLabel onClick={() => setIsClicked(!isClicked)}>Edit Name</ButtonLabel>
 				</div>
-			
 			)}
 		</DivLabel>
 	)
 }
+const FormLabel = styled.form`
+	display: flex;
+	justify-content: center;
+	column-gap: 10px;
+`
 
 const DivLabel = styled.div`
     color: #fff;

@@ -8,7 +8,6 @@ const LoginAuthAction = (userState, navigate, setErrorHandler) => {
 		try {
 			const response = await axios.post('http://localhost:3001/api/v1/user/login', userState)
 			const { data } = response
-			
 			dispatch({type: AuthActionType.LOGIN_SUCCESS, payload: data })
 			toast.success(data.message)
 			navigate('/private/profile')
@@ -31,6 +30,5 @@ const LogoutAuthAction = () => {
 		toast.success('You are now disconnected')
 	}
 }
-
 
 export { LoginAuthAction, LogoutAuthAction, AuthActionType}

@@ -11,9 +11,10 @@ import {LogoutAuthAction} from '../../store/actions/AuthAction'
 const Header = () => {
 	const dispatch = useDispatch()
 	const isLoggedIn = useSelector(state => state.currentUser.isLoggedIn)
+	const firstName = useSelector(state => state.user.user.body.firstName)
+	const lastName = useSelector(state => state.user.user.body.lastName)
 
 	return (
-    
 		<header>
 			<NavLabel>
 				<Link to="/">
@@ -25,7 +26,7 @@ const Header = () => {
 				<Title>Argent Bank</Title>
 				{isLoggedIn ? (
 					<DivLabel>
-						<SpanLabel><UserIcon /> Steve Rogers</SpanLabel>
+						<SpanLabel><UserIcon /> {firstName} {lastName}</SpanLabel>
 						<LogoutSpanLabel onClick={() => dispatch(LogoutAuthAction(dispatch))} >
 							<SignOutIcon />
 							Sign Out

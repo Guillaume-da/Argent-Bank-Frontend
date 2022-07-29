@@ -19,10 +19,10 @@ const GetUserAction = (token) => {
 			
 		} catch (error) {
 			if (error.response) {
-				const { data } = error.response
+				const { datas } = error.response
 				dispatch({
 					type: GetUserType.GETUSER_FAIL,
-					payload: error.response.data.message,
+					payload: datas.data.message,
 				})
 			}
 		}

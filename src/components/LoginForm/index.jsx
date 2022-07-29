@@ -16,13 +16,12 @@ const Form = (props) => {
 	})
  
 	return(
-        
 		<form onSubmit={(event) => {
 			event.preventDefault()
 			login(userState, navigate, setErrorHandler)
 		}}>
 			<DivLabel>
-				<FormLabel htmlFor="email">Username</FormLabel>
+				<FormLabelLabel htmlFor="email">Username</FormLabelLabel>
 				<InputLabel 
 					type='email' 
 					id='email' 
@@ -35,7 +34,7 @@ const Form = (props) => {
 					required/>
 			</DivLabel>
 			<DivLabel>
-				<FormLabel htmlFor="password">Password</FormLabel>
+				<FormLabelLabel htmlFor="password">Password</FormLabelLabel>
 				<InputLabel 
 					type="password" 
 					id="password" 
@@ -63,7 +62,7 @@ const DivLabel = styled.div`
     text-align: left;
     margin-bottom: 1rem;
 `
-const FormLabel = styled.label`
+const FormLabelLabel = styled.label`
     font-weight: bold;
 `
 const RememberMe = styled.div`
