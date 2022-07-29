@@ -6,6 +6,7 @@ const LoginAuthAction = (userState, navigate, setErrorHandler) => {
 		try {
 			const response = await axios.post('http://localhost:3001/api/v1/user/login', userState)
 			const { data } = response
+			
 			dispatch({type: AuthActionType.LOGIN_SUCCESS, payload: data })
 			navigate('/private/profile')
 		} catch (error) {

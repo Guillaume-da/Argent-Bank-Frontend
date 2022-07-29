@@ -7,6 +7,7 @@ import SignIn from './pages/SignIn'
 import Profile from './pages/Private/Profile'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
+import { ToastContainer} from 'react-toastify'
 
 function App() {
 	const location = useLocation()
@@ -23,6 +24,17 @@ function App() {
 				{/* <Route path="*" element={<Error />} /> */}
 			</Routes> 
 			<Footer />
+			<ToastContainer
+				position="top-right"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+			/> 
 		</DivLabel>
 	)
 }
