@@ -1,12 +1,23 @@
-import { React } from 'react'
+/* eslint-disable react/prop-types */
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 import Welcome from '../../../components/Welcome'
 import styled from 'styled-components'
+import GetUserAction from '../../../store/actions/GetUserAction'
 
-const Profile = () => {
-	
+const Profile = (props) => {
+	const token = useSelector(state => state.currentUser.auth.body.token)
+	const firstName = useSelector(state => state.user.user.body.firstName)
+	const lastName = useSelector(state => state.user.user.body.lastName)
+	const {access} = props
+	useEffect(() => {
+		access(token)
+	}, [])
+
 	return(
 		<MainLabel>
-			<Welcome firstNameValue='Steve' lastNameValue='Rogers'/>
+			<Welcome firstNameValue={firstName} lastNameValue={lastName}/>
 			<PageTitle>Accounts</PageTitle>
 			<SectionLabel>
 				<WrapperDivLabel>
@@ -119,4 +130,19 @@ const PageTitle  = styled.h1`
     white-space: nowrap !important; /* 3 */ 
 `
 
-export default Profile
+const mapStateToProps = (state) => {
+	return {
+		user: state,
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	
+	return {
+		access: (token)=> {
+			dispatch(GetUserAction(token))
+		},
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

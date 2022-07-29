@@ -1,35 +1,33 @@
 /* eslint-disable no-undef */
-import AuthActionType from '../type' 
+import { GetUserType } from '../type' 
 
 const userState = {
-	isLoggedIn: false,
 	user: {
 		'status': null,
 		'message': '',
 		'body': {
-			'token': ''
+			'email': '',
+			'firstName': '',
+			'lastName': '',
+			'createdAt': '',
+			'updatedAt': '',
+			'id': ''
 		}
 	}
 }
 
-const userReducer = (state = userState, action) => {
+const UserReducer = (state = userState, action) => {
 
 	switch (action.type) {
-	case AuthActionType.LOGIN_SUCCESS:
+	case GetUserType.GETUSER_SUCCESS:
 		return {
-			isLoggedIn: true,
 			user: action.payload
 		}
-	case AuthActionType.LOGIN_FAIL:
+	case GetUserType.GETUSER_FAIL:
 		return state
-	case AuthActionType.USER_LOGOUT:
-		return userState
 	default:
 		return state
 	}
-
-	
-
 }
 
-export default userReducer
+export default UserReducer

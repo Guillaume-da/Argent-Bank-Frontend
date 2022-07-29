@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
+import AuthReducer from './AuthReducer'
+import AuthErrorReducer from './AuthErrorReducer'
 import UserReducer from './UserReducer'
-import UserErrorReducer from './UserErrorReducer'
 
 export const appReducer = combineReducers({
-	currentUser: UserReducer,
-	error: UserErrorReducer
+	currentUser: AuthReducer,
+	error: AuthErrorReducer,
+	user: UserReducer,
 })
 
 const rootReducer = (state, action) => {

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import AuthActionType from '../type'
+import { AuthActionType } from '../type'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 

@@ -11,7 +11,6 @@ import {LogoutAuthAction} from '../../store/actions/AuthAction'
 const Header = () => {
 	const dispatch = useDispatch()
 	const isLoggedIn = useSelector(state => state.currentUser.isLoggedIn)
-	
 
 	return (
     

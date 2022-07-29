@@ -4,4 +4,9 @@ const AuthActionType = {
 	USER_LOGOUT: 'USER_LOGOUT'
 }
 
-export default AuthActionType
+const GetUserType = {
+	GETUSER_SUCCESS: 'GETUSER_SUCCESS',
+	GETUSER_FAIL: 'GETUSER_FAIL'
+}
+
+export {AuthActionType, GetUserType}

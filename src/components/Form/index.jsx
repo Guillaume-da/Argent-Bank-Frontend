@@ -91,7 +91,7 @@ const InputLabel = styled.input`
 
 const mapStateToProps = (state) => {
 	return {
-		user: state,
+		auth: state,
 	}
 }
 
