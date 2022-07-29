@@ -6,22 +6,11 @@ import styled from 'styled-components'
 import {UserCircle} from '@styled-icons/fa-solid'
 import {SignOut} from '@styled-icons/octicons/SignOut'
 import {LogoutAuthAction} from '../../store/actions/AuthAction'
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 
 const Header = () => {
 	const dispatch = useDispatch()
 	const isLoggedIn = useSelector(state => state.currentUser.isLoggedIn)
-	const successMessage = useSelector(state => state.currentUser.user.message)
-	const errorMessage = useSelector(state => state.error.message)
-
-	if (successMessage.length > 0) {
-		toast.success(successMessage, {toastId: 'loginSuccess'}, {autoClose: 1500, hideProgressBar: true})
-	}
-	if(errorMessage.length > 0 && successMessage.length === 0) {
-		toast.error(errorMessage, {toastId: 'loginFailed'}, {autoClose: 1500, hideProgressBar: true})
-	}
-
+	
 	return (
     
 		<header>
