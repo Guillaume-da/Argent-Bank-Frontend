@@ -1,10 +1,10 @@
 import { React } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Private from './components/Private'
+import Private from './pages/Private'
 import Home from './pages/Home'
 import SignIn from './pages/SignIn'
-import Profile from './pages/Profile'
+import Profile from './pages/Private/Profile'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 

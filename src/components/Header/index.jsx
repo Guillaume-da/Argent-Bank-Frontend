@@ -10,7 +10,6 @@ import {LogoutAuthAction} from '../../store/actions/AuthAction'
 const Header = () => {
 	const dispatch = useDispatch()
 	const isLoggedIn = useSelector(state => state.currentUser.isLoggedIn)
-	console.log(isLoggedIn)
 
 	return (
 		<header>
@@ -102,6 +101,7 @@ const LogoutSpanLabel = styled.span`
   display: flex;
   align-items: center;
   column-gap: 5px;
+  cursor: pointer;
 `
 
 export default Header

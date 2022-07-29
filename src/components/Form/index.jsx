@@ -3,17 +3,19 @@
 import React, {useState} from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import {LoginAuthAction} from '../../store/actions/AuthAction'
+import { useNavigate } from 'react-router'
+import { LoginAuthAction } from '../../store/actions/AuthAction'
 
 const Form = (props) => {
 	const {user, login} = props
 	const[userState, setUserState] = useState({})
-      
+	const navigate = useNavigate()
+ 
 	return(
         
 		<form onSubmit={(event) => {
 			event.preventDefault()
-			login(userState)
+			login(userState, navigate)
 		}}>
 			<DivLabel>
 				<FormLabel htmlFor="email">Username</FormLabel>
@@ -51,7 +53,6 @@ const Form = (props) => {
 	)
 }
 
-
 const DivLabel = styled.div`
     display: flex;
     flex-direction: column;
@@ -83,6 +84,7 @@ const InputLabel = styled.input`
     padding: 5px;
     font-size: 1.2rem;
 `
+
 const mapStateToProps = (state) => {
 	return {
 		user: state,
@@ -90,12 +92,12 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
+	
 	return {
-		login: (userState)=> {
-			dispatch(LoginAuthAction(userState))
+		login: (userState, navigate)=> {
+			dispatch(LoginAuthAction(userState, navigate))
 		},
 	}
-	
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form)

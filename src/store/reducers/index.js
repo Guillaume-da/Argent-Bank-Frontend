@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux'
 import userReducer from './userReducer'
-// import storage from 'redux-persist/lib/storage'
 
 export const appReducer = combineReducers({
 	currentUser: userReducer
