@@ -7,15 +7,19 @@ import { useNavigate } from 'react-router'
 import { LoginAuthAction } from '../../store/actions/AuthAction'
 
 const Form = (props) => {
-	const {user, login} = props
+	const {login} = props
 	const[userState, setUserState] = useState({})
 	const navigate = useNavigate()
+	const [errorHandler, setErrorHandler] = useState({
+		hasError: false,
+		message: '',
+	})
  
 	return(
         
 		<form onSubmit={(event) => {
 			event.preventDefault()
-			login(userState, navigate)
+			login(userState, navigate, setErrorHandler)
 		}}>
 			<DivLabel>
 				<FormLabel htmlFor="email">Username</FormLabel>
@@ -94,8 +98,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	
 	return {
-		login: (userState, navigate)=> {
-			dispatch(LoginAuthAction(userState, navigate))
+		login: (userState, navigate, setErrorHandler)=> {
+			dispatch(LoginAuthAction(userState, navigate, setErrorHandler))
 		},
 	}
 }

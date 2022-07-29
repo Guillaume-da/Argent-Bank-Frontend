@@ -1,7 +1,7 @@
 import axios from 'axios'
 import AuthActionType from '../type'
 
-const LoginAuthAction = (userState, navigate) => {
+const LoginAuthAction = (userState, navigate, setErrorHandler) => {
 	return async (dispatch) => {
 		try {
 			const response = await axios.post('http://localhost:3001/api/v1/user/login', userState)
@@ -9,8 +9,13 @@ const LoginAuthAction = (userState, navigate) => {
 			dispatch({type: AuthActionType.LOGIN_SUCCESS, payload: data })
 			navigate('/private/profile')
 		} catch (error) {
-			console.log(error)
-			dispatch({type: AuthActionType.LOGIN_FAIL, payload: {} })
+			if (error.response) {
+				dispatch({
+					type: AuthActionType.LOGIN_FAIL,
+					payload: error.response.data.message,
+				})
+			}
+			setErrorHandler({ hasError: true, message: error.response.data.message })
 		}
 	}
 }
