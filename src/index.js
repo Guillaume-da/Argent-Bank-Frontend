@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
-
+import { Provider } from 'react-redux'
+import store, {Persistor} from './store/store'
+import { PersistGate } from 'redux-persist/integration/react'
 
 const GlobalStyle = createGlobalStyle`
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -33,11 +35,15 @@ const GlobalStyle = createGlobalStyle`
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
 	<React.StrictMode>
-		<GlobalStyle />
-		<Router>
-			<Routes>
-				<Route path="/*" element={<App />} />
-			</Routes>
-		</Router>
+		<Provider store={store}>
+			<PersistGate loading={null} persistor={Persistor}>
+				<GlobalStyle />
+				<Router>
+					<Routes>
+						<Route path="/*" element={<App />} />
+					</Routes>
+				</Router>
+			</PersistGate>
+		</Provider>
 	</React.StrictMode>
 )

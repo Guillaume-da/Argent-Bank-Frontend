@@ -1,7 +1,7 @@
 import { React } from 'react'
 import styled from 'styled-components'
 import {UserCircle} from '@styled-icons/fa-solid'
-import Form from '../components/Form'
+import LoginForm from '../components/LoginForm'
 
 const SignIn = () => {
 	return (
@@ -9,7 +9,7 @@ const SignIn = () => {
 			<SectionLabel>
 				<Icon />
 				<h1>Sign In</h1>
-				<Form />
+				<LoginForm />
 			</SectionLabel>
 		</MainLabel>
 	)

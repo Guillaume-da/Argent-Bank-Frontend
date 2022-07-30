@@ -1,13 +1,19 @@
 import React from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import logo from '../../assets/argentBankLogo.png'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import {UserCircle} from '@styled-icons/fa-solid'
 import {SignOut} from '@styled-icons/octicons/SignOut'
+import {LogoutAuthAction} from '../../store/actions/AuthAction'
+
 
 const Header = () => {
-  
-  
+	const dispatch = useDispatch()
+	const isLoggedIn = useSelector(state => state.currentUser.isLoggedIn)
+	const firstName = useSelector(state => state.user.user.body.firstName)
+	const lastName = useSelector(state => state.user.user.body.lastName)
+
 	return (
 		<header>
 			<NavLabel>
@@ -18,22 +24,22 @@ const Header = () => {
 					/>
 				</Link>
 				<Title>Argent Bank</Title>
-				
-				<DivLabel>
-					<SpanLabel><UserIcon /> Steve Rogers</SpanLabel>
-					<LinkLabel to="/" >
-						<SignOutIcon />
+				{isLoggedIn ? (
+					<DivLabel>
+						<SpanLabel><UserIcon /> {firstName} {lastName}</SpanLabel>
+						<LogoutSpanLabel onClick={() => dispatch(LogoutAuthAction(dispatch))} >
+							<SignOutIcon />
 							Sign Out
-					</LinkLabel>
-				</DivLabel>
-				
-				<div>
-					<LinkLabel to="/login">
-						<UserIcon />
+						</LogoutSpanLabel>
+					</DivLabel>
+				) : (
+					<div>
+						<LinkLabel to="/login">
+							<UserIcon />
 							Sign In
-					</LinkLabel>
-				</div>
-				
+						</LinkLabel>
+					</div>
+				)}
 			</NavLabel>
 		</header>
 	)
@@ -89,6 +95,16 @@ const SpanLabel = styled.span`
   color: #2c3e50;
   display: flex;
   column-gap: 5px;
+`
+const LogoutSpanLabel = styled.span`
+  text-decoration: none;
+  margin-right: 0.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  cursor: pointer;
 `
 
 export default Header
