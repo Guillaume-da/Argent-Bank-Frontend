@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { GetUserType } from '../type' 
+import { UserType } from '../type' 
 
 const userState = {
 	user: {
@@ -19,12 +19,16 @@ const userState = {
 const UserReducer = (state = userState, action) => {
 
 	switch (action.type) {
-	case GetUserType.GETUSER_SUCCESS:
+	case UserType.GETUSER_SUCCESS:
 		return {
 			user: action.payload
 		}
-	case GetUserType.GETUSER_FAIL:
+	case UserType.GETUSER_FAIL:
 		return state
+	case UserType.MODIFYUSER_SUCCESS:
+		return {
+			user: action.payload
+		}
 	default:
 		return state
 	}

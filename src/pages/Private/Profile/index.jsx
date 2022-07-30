@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { connect } from 'react-redux'
 import Welcome from '../../../components/Welcome'
 import styled from 'styled-components'
-import GetUserAction from '../../../store/actions/GetUserAction'
+import { GetUserAction } from '../../../store/actions/UserAction'
 
 const Profile = (props) => {
 	const token = useSelector(state => state.currentUser.auth.body.token)

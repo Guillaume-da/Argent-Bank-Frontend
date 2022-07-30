@@ -1,21 +1,55 @@
 /* eslint-disable react/prop-types */
 import { React, useState} from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+import { ModifyUserAction } from '../../store/actions/UserAction'
 
 const Welcome = (props) => {
+
+	const {changeName} = props
 	const firstName = props.firstNameValue
 	const lastName = props.lastNameValue
-
+	const token = useSelector(state => state.currentUser.auth.body.token)
+	
 	const [isClicked, setIsClicked] = useState(false)
+	const[userState, setUserState] = useState({firstName, lastName})
 
 	return (
 		<DivLabel>
 			{isClicked ? (
 				<div>
 					<h1>Welcome back</h1>
-					<FormLabel>
-						<InputLabel type='text' id='newFirstName' name='newFirstName' defaultValue={firstName} placeholder={firstName} ></InputLabel>
-						<InputLabel type='text' id='newLastName' name='newLastName' defaultValue={lastName} placeholder={lastName} ></InputLabel>
+					<FormLabel 
+						onSubmit={(event) => {
+							event.preventDefault()
+							changeName(userState, token)
+							setIsClicked(!isClicked)
+						}}>
+						<InputLabel 
+							type='text' 
+							id='newFirstName' 
+							name='newFirstName' 
+							defaultValue={firstName} 
+							placeholder={firstName} 
+							onChange={ (event)=> {
+								const firstName = event.target.value
+								setUserState({ ...userState, ...{ firstName }})
+							}} 
+						>
+						</InputLabel>
+						<InputLabel 
+							type='text' 
+							id='newLastName' 
+							name='newLastName' 
+							defaultValue={lastName} 
+							placeholder={lastName} 
+							onChange={ (event)=> {
+								const lastName = event.target.value
+								setUserState({ ...userState, ...{ lastName }})
+							}} 
+						>	
+						</InputLabel>
 						<ButtonLabel type='submit'>Save</ButtonLabel>
 						<ButtonLabel className="red" onClick={() => setIsClicked(!isClicked)}>Cancel</ButtonLabel>
 					</FormLabel>
@@ -50,5 +84,19 @@ const ButtonLabel = styled.button`
 const InputLabel = styled.input`
     padding: 10px;
 `
+const mapStateToProps = (state) => {
+	return {
+		user: state,
+	}
+}
 
-export default Welcome
+const mapDispatchToProps = (dispatch) => {
+	
+	return {
+		changeName: (userState, token)=> {
+			dispatch(ModifyUserAction(userState, token))
+		},
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome)
