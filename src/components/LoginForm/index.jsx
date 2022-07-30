@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router'
 import { LoginAuthAction } from '../../store/actions/AuthAction'
+import { LoginAuthWithRememberAction } from '../../store/actions/AuthWithRememberAction'
 
 const Form = (props) => {
 	const {login} = props
@@ -14,11 +15,13 @@ const Form = (props) => {
 		hasError: false,
 		message: '',
 	})
- 
+	const[rememberMeState, setRememberMeState] = useState(false)
+
 	return(
 		<form onSubmit={(event) => {
 			event.preventDefault()
-			login(userState, navigate, setErrorHandler)
+			
+			login(userState, navigate, rememberMeState, setErrorHandler)
 		}}>
 			<DivLabel>
 				<FormLabelLabel htmlFor="email">Username</FormLabelLabel>
@@ -48,7 +51,7 @@ const Form = (props) => {
 			</DivLabel>
 			<RememberMe>
 				<InputLabel type="checkbox" id="remember-me" />
-				<RememberMeLabel htmlFor="remember-me">Remember me</RememberMeLabel>
+				<RememberMeLabel htmlFor="remember-me" onClick={() => setRememberMeState(!rememberMeState)}>Remember me</RememberMeLabel>
 			</RememberMe>
                     
 			<ButtonLabel type='submit' /* onClick={notify} */>Sign In</ButtonLabel>
@@ -95,10 +98,14 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-	
 	return {
-		login: (userState, navigate, setErrorHandler)=> {
-			dispatch(LoginAuthAction(userState, navigate, setErrorHandler))
+		login: (userState, navigate, rememberMeState, setErrorHandler)=> {
+			if(rememberMeState === true) {
+				dispatch(LoginAuthWithRememberAction(userState, navigate, rememberMeState, setErrorHandler))
+			} else {
+				dispatch(LoginAuthAction(userState, navigate, rememberMeState, setErrorHandler))
+			}
+			
 		},
 	}
 }

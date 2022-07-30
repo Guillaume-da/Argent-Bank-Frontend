@@ -4,10 +4,14 @@ const AuthActionType = {
 	USER_LOGOUT: 'USER_LOGOUT'
 }
 
+const AuthWithRememberActionType = {
+	LOGINWITHREMEMBER_SUCCESS: 'LOGINWITHREMEMBER_SUCCESS',
+}
+
 const UserType = {
 	GETUSER_SUCCESS: 'GETUSER_SUCCESS',
 	GETUSER_FAIL: 'GETUSER_FAIL',
 	MODIFYUSER_SUCCESS: 'MODIFYUSER_SUCCESS'
 }
 
-export {AuthActionType, UserType}
+export {AuthActionType, AuthWithRememberActionType, UserType}

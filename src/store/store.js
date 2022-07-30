@@ -6,14 +6,17 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 const initalState = {
+	
 }
 
-const persistConfig = {
-	key:'main-root',
+const config = {
+	key: 'root',
 	storage,
+	blacklist: ['withoutRememberMe'],
 }
 
-const persistedReducer = persistReducer(persistConfig,rootReducer)
+
+const persistedReducer = persistReducer(config,rootReducer)
 
 const middleware = [thunk]
 

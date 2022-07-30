@@ -9,7 +9,7 @@ const authState = {
 		'body': {
 			'token': ''
 		}
-	}
+	},
 }
 
 const AuthReducer = (state = authState, action) => {
@@ -18,7 +18,7 @@ const AuthReducer = (state = authState, action) => {
 	case AuthActionType.LOGIN_SUCCESS:
 		return {
 			isLoggedIn: true,
-			auth: action.payload
+			auth: action.payload,
 		}
 	case AuthActionType.LOGIN_FAIL:
 		return state
