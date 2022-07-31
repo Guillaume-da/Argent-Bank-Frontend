@@ -16,7 +16,6 @@ const LoginAuthAction = (userState, navigate, rememberMeState, setErrorHandler) 
 				dispatch({type: AuthWithRememberActionType.LOGINWITHREMEMBER_SUCCESS, payload: data })
 			}
 			
-			
 			toast.success(data.message)
 			navigate('/private/profile')
 		} catch (error) {

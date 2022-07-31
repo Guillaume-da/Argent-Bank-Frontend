@@ -10,7 +10,7 @@ const Welcome = (props) => {
 	const {changeName} = props
 	const firstName = props.firstNameValue
 	const lastName = props.lastNameValue
-	const token = useSelector(state => (state.withoutRememberMe.auth.body.token ? state.withoutRememberMe.auth.body.token : state.withRememberMe.auth.body.token))
+	const token = useSelector(state => (state.connection.auth.body.token ? state.connection.auth.body.token : state.persistedConnection.auth.body.token))
 	
 	const [isClicked, setIsClicked] = useState(false)
 	const[userState, setUserState] = useState({firstName, lastName})

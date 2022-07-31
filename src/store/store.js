@@ -12,7 +12,7 @@ const initalState = {
 const config = {
 	key: 'root',
 	storage,
-	blacklist: ['withoutRememberMe'],
+	blacklist: ['connection'],
 }
 
 const persistedReducer = persistReducer(config,rootReducer)

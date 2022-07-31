@@ -10,7 +10,7 @@ import {LogoutAuthAction} from '../../store/actions/AuthAction'
 
 const Header = () => {
 	const dispatch = useDispatch()
-	const isLoggedIn = useSelector(state => (state.withRememberMe.isLoggedIn ? state.withRememberMe.isLoggedIn : state.withoutRememberMe.isLoggedIn))
+	const isLoggedIn = useSelector(state => (state.persistedConnection.isLoggedIn ? state.persistedConnection.isLoggedIn : state.connection.isLoggedIn))
 	const firstName = useSelector(state => state.user.user.body.firstName)
 	const lastName = useSelector(state => state.user.user.body.lastName)
 

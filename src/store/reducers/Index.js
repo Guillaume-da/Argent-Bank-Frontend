@@ -6,8 +6,8 @@ import AuthErrorReducer from './AuthErrorReducer'
 import UserReducer from './UserReducer'
 
 export const appReducer = combineReducers({
-	withoutRememberMe: AuthReducer,
-	withRememberMe: AuthReducerWithRemember,
+	connection: AuthReducer,
+	persistedConnection: AuthReducerWithRemember,
 	error: AuthErrorReducer,
 	user: UserReducer,
 })

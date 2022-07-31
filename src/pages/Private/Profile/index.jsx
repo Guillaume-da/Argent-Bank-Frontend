@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import { GetUserAction } from '../../../store/actions/UserAction'
 
 const Profile = (props) => {
-	const token = (useSelector(state => (state.withoutRememberMe.auth.body.token)) ? useSelector(state => (state.withoutRememberMe.auth.body.token)) : useSelector(state => (state.withRememberMe.auth.body.token)))
+	const token = (useSelector(state => (state.connection.auth.body.token)) ? useSelector(state => (state.connection.auth.body.token)) : useSelector(state => (state.persistedConnection.auth.body.token)))
 	const firstName = useSelector(state => state.user.user.body.firstName)
 	const lastName = useSelector(state => state.user.user.body.lastName)
 	const {access} = props
