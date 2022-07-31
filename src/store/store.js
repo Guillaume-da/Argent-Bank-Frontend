@@ -15,7 +15,6 @@ const config = {
 	blacklist: ['withoutRememberMe'],
 }
 
-
 const persistedReducer = persistReducer(config,rootReducer)
 
 const middleware = [thunk]

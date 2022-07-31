@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router'
 import { LoginAuthAction } from '../../store/actions/AuthAction'
-import { LoginAuthWithRememberAction } from '../../store/actions/AuthWithRememberAction'
 
 const Form = (props) => {
 	const {login} = props
@@ -20,7 +19,6 @@ const Form = (props) => {
 	return(
 		<form onSubmit={(event) => {
 			event.preventDefault()
-			
 			login(userState, navigate, rememberMeState, setErrorHandler)
 		}}>
 			<DivLabel>
@@ -100,12 +98,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		login: (userState, navigate, rememberMeState, setErrorHandler)=> {
-			if(rememberMeState === true) {
-				dispatch(LoginAuthWithRememberAction(userState, navigate, rememberMeState, setErrorHandler))
-			} else {
-				dispatch(LoginAuthAction(userState, navigate, rememberMeState, setErrorHandler))
-			}
-			
+			dispatch(LoginAuthAction(userState, navigate, rememberMeState, setErrorHandler))
 		},
 	}
 }
