@@ -36,7 +36,6 @@ const ModifyUserAction = (userState, token) => {
 				Authorization: `Bearer ${token}`,
 			},
 		}
-		// const data = {}
 		try {
 			const response = await axios.put('http://localhost:3001/api/v1/user/profile', userState, config)
 			const datas  = response.data

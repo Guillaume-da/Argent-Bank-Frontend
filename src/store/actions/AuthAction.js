@@ -9,13 +9,11 @@ const LoginAuthAction = (userState, navigate, rememberMeState, setErrorHandler) 
 		try {
 			const response = await axios.post('http://localhost:3001/api/v1/user/login', userState)
 			const { data } = response
-			console.log('action', rememberMeState)
 			if(rememberMeState === false) {
 				dispatch({type: AuthActionType.LOGIN_SUCCESS, payload: data })
 			} else {
 				dispatch({type: AuthWithRememberActionType.LOGINWITHREMEMBER_SUCCESS, payload: data })
 			}
-			
 			toast.success(data.message)
 			navigate('/private/profile')
 		} catch (error) {

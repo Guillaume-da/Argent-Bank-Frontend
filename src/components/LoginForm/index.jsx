@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router'
 import { LoginAuthAction } from '../../store/actions/AuthAction'
+import PropTypes from 'prop-types'
 
 const Form = (props) => {
 	const {login} = props
@@ -52,9 +52,13 @@ const Form = (props) => {
 				<RememberMeLabel htmlFor="remember-me" onClick={() => setRememberMeState(!rememberMeState)}>Remember me</RememberMeLabel>
 			</RememberMe>
                     
-			<ButtonLabel type='submit' /* onClick={notify} */>Sign In</ButtonLabel>
+			<ButtonLabel type='submit'>Sign In</ButtonLabel>
 		</form>
 	)
+}
+
+Form.propTypes = {
+	login: PropTypes.func.isRequired,
 }
 
 const DivLabel = styled.div`

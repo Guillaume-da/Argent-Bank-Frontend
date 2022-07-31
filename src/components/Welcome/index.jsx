@@ -1,12 +1,11 @@
-/* eslint-disable react/prop-types */
 import { React, useState} from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { ModifyUserAction } from '../../store/actions/UserAction'
+import PropTypes from 'prop-types'
 
 const Welcome = (props) => {
-
 	const {changeName} = props
 	const firstName = props.firstNameValue
 	const lastName = props.lastNameValue
@@ -63,6 +62,13 @@ const Welcome = (props) => {
 		</DivLabel>
 	)
 }
+
+Welcome.propTypes = {
+	changeName: PropTypes.func.isRequired,
+	firstNameValue: PropTypes.string.isRequired,
+	lastNameValue: PropTypes.string.isRequired,
+}
+
 const FormLabel = styled.form`
 	display: flex;
 	justify-content: center;

@@ -3,6 +3,7 @@ import chatIcon from '../../assets/icon-chat.png'
 import moneyIcon from '../../assets/icon-money.png'
 import securityIcon from '../../assets/icon-security.png'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const Feature = (idValue) => {
 	if(idValue.idValue === 'Contact') {
@@ -42,6 +43,10 @@ const Feature = (idValue) => {
 			</DivLabel>
 		)
 	}
+}
+
+Feature.propTypes = {
+	idValue: PropTypes.string.isRequired,
 }
 
 const DivLabel = styled.div`

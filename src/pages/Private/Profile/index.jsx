@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { connect } from 'react-redux'
 import Welcome from '../../../components/Welcome'
 import styled from 'styled-components'
 import { GetUserAction } from '../../../store/actions/UserAction'
+import PropTypes from 'prop-types'
 
 const Profile = (props) => {
 	const token = (useSelector(state => (state.connection.auth.body.token)) ? useSelector(state => (state.connection.auth.body.token)) : useSelector(state => (state.persistedConnection.auth.body.token)))
@@ -51,6 +51,10 @@ const Profile = (props) => {
 			</SectionLabel>
 		</MainLabel>
 	)
+}
+
+Profile.propTypes = {
+	access: PropTypes.func.isRequired,
 }
 
 const MainLabel = styled.main`
