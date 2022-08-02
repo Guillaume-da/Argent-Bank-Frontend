@@ -5,9 +5,7 @@ import rootReducer from './reducers/Index.js'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-const initalState = {
-	
-}
+const initalState = {}
 
 const config = {
 	key: 'root',

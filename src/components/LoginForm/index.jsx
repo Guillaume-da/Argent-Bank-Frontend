@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router'
 import { LoginAuthAction } from '../../store/actions/AuthAction'
 import PropTypes from 'prop-types'
 
-const Form = (props) => {
+const LoginForm = (props) => {
 	const {login} = props
 	const[userState, setUserState] = useState({})
 	const navigate = useNavigate()
@@ -57,7 +57,7 @@ const Form = (props) => {
 	)
 }
 
-Form.propTypes = {
+LoginForm.propTypes = {
 	login: PropTypes.func.isRequired,
 }
 
@@ -107,4 +107,4 @@ const mapDispatchToProps = (dispatch) => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

@@ -1,14 +1,15 @@
 import { combineReducers } from 'redux'
 import AuthReducer from './AuthReducer'
 import AuthReducerWithRemember from './AuthReducerWithRemember'
-
 import AuthErrorReducer from './AuthErrorReducer'
 import UserReducer from './UserReducer'
+import UserErrorReducer from './UserErrorReducer'
 
 export const appReducer = combineReducers({
 	connection: AuthReducer,
 	persistedConnection: AuthReducerWithRemember,
-	error: AuthErrorReducer,
+	authError: AuthErrorReducer,
+	userError: UserErrorReducer,
 	user: UserReducer,
 })
 

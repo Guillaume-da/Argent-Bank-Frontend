@@ -4,10 +4,8 @@ const authError = {
 	message: '',
 }
 
-const UserErrorReducer = (state = authError, action) => {
+const AuthErrorReducer = (state = authError, action) => {
 	switch (action.type) {
-	case AuthActionType.REGISTER_FAIL:
-		return { message: action.payload }
 	case AuthActionType.LOGOUT_FAIL:
 		return { message: action.payload }
 	case AuthActionType.LOGIN_FAIL:
@@ -17,4 +15,4 @@ const UserErrorReducer = (state = authError, action) => {
 	}
 }
 
-export default UserErrorReducer
+export default AuthErrorReducer

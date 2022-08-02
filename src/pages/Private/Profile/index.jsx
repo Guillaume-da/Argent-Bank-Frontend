@@ -6,6 +6,17 @@ import styled from 'styled-components'
 import { GetUserAction } from '../../../store/actions/UserAction'
 import PropTypes from 'prop-types'
 
+
+/**
+ * Allows to show user profile
+ *
+ * @param {object} props - Contains token, firstname and lastname
+ *
+ * @return User profile page
+ * 
+ * @version 1.0
+ * 
+ */
 const Profile = (props) => {
 	const token = (useSelector(state => (state.connection.auth.body.token)) ? useSelector(state => (state.connection.auth.body.token)) : useSelector(state => (state.persistedConnection.auth.body.token)))
 	const firstName = useSelector(state => state.user.user.body.firstName)
@@ -13,7 +24,7 @@ const Profile = (props) => {
 	const {access} = props
 	useEffect(() => {
 		access(token)
-	}, [])
+	}, [token])
 
 	return(
 		<MainLabel>

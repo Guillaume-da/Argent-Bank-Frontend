@@ -22,6 +22,9 @@ const MainLabel = styled.main`
     @media (max-width: 720px) {
         padding-bottom: 5rem;
       }
+      @media (min-width: 720px) and (max-width: 920px){
+        padding-bottom: 7rem;
+      }
 `
 const SectionLabel = styled.section`
     display: flex;

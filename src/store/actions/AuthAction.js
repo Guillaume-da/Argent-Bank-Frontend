@@ -4,6 +4,18 @@ import { AuthWithRememberActionType } from '../type'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
+
+/**
+ * Allows to login to the API and dispatch datas received to the store
+ *
+ * @param {object} userState - datas coming from loging form (mail and password)
+ * @param {function} navigate = useNavigate()
+ * @param {boolean} rememberMeState - allows to know if remember me option was clicked in form
+ * @param {function} setErrorHandler - allows to set errorHandler whiwh is used by useState() in loging form
+ *
+ * @version 1.0
+ * 
+ */
 const LoginAuthAction = (userState, navigate, rememberMeState, setErrorHandler) => {
 	return async (dispatch) => {
 		try {

@@ -5,6 +5,16 @@ import { connect } from 'react-redux'
 import { ModifyUserAction } from '../../store/actions/UserAction'
 import PropTypes from 'prop-types'
 
+/**
+ * Allows to show welcom message with the firstname and lastname of user
+ *
+ * @param {object} props - contains firstname and lastname
+ *
+ * @return Div containing a form allowing to change firstname and lastname
+ * 
+ * @version 1.0
+ * 
+ */
 const Welcome = (props) => {
 	const {changeName} = props
 	const firstName = props.firstNameValue

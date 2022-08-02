@@ -1,6 +1,7 @@
 import { React } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import Error from './components/Error'
 import Private from './pages/Private'
 import Home from './pages/Home'
 import SignIn from './pages/SignIn'
@@ -20,7 +21,7 @@ function App() {
 				<Route path="/private" element={<Private />}>
 					<Route path="/private/profile" element={<Profile />} />
 				</Route>
-				{/* <Route path="*" element={<Error />} /> */}
+				<Route path="*" element={<Error />} />
 			</Routes> 
 			<Footer />
 			<ToastContainer
