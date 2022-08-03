@@ -1,7 +1,7 @@
 import { React } from 'react'
 import styled from 'styled-components'
 import {UserCircle} from '@styled-icons/fa-solid'
-import LoginForm from '../components/LoginForm'
+import LoginForm from '../components/LoginForm/LoginForm'
 
 const SignIn = () => {
 	return (

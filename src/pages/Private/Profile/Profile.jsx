@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { connect } from 'react-redux'
-import Welcome from '../../../components/Welcome'
+import Welcome from '../../../components/Welcome/Welcome'
 import styled from 'styled-components'
 import { GetUserAction } from '../../../store/actions/UserAction'
 import PropTypes from 'prop-types'
