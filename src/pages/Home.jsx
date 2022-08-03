@@ -3,6 +3,15 @@ import Hero from '../components/Hero/Hero'
 import Feature from '../components/Feature/Feature'
 import styled from 'styled-components'
 
+/**
+ * Allows to show Homepage
+ *
+ *
+ * @return A main div which includes Hero component ans a section with the Feature component
+ * 
+ * @version 1.0
+ * 
+ */
 const Home = () => {
 	return (
 		<MainLabel>

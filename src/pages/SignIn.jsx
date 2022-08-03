@@ -3,6 +3,16 @@ import styled from 'styled-components'
 import {UserCircle} from '@styled-icons/fa-solid'
 import LoginForm from '../components/LoginForm/LoginForm'
 
+
+/**
+ * Allows to show Signin page
+ *
+ *
+ * @return A main div which includes the LoginForm component
+ * 
+ * @version 1.0
+ * 
+ */
 const SignIn = () => {
 	return (
 		<MainLabel>

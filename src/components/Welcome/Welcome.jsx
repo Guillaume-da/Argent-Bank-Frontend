@@ -22,7 +22,6 @@ const Welcome = (props) => {
 	const firstName = props.firstNameValue
 	const lastName = props.lastNameValue
 	const token = useSelector(state => (state.connection.auth.body.token ? state.connection.auth.body.token : state.persistedConnection.auth.body.token))
-	
 	const [isClicked, setIsClicked] = useState(false)
 	const[userState, setUserState] = useState({firstName, lastName})
 
@@ -119,9 +118,30 @@ const mapStateToProps = (state) => {
 	}
 }
 
+
+/**
+ * Allows to pass changeName function to props
+ *
+ * @param {function} dispatch 
+ *
+ * @return changeName function
+ * 
+ * @version 1.0
+ * 
+ */
 const mapDispatchToProps = (dispatch) => {
 	
 	return {
+
+		/**
+		 * Allows to dispatch ModifyUserAction action
+		 *
+		 * @param {object} userState - contains firstname and lastname
+		 * @param {string} token
+		 * 
+		 * @version 1.0
+		 * 
+		 */
 		changeName: (userState, token)=> {
 			dispatch(ModifyUserAction(userState, token))
 		},

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: pages/Private/Private.jsx</title>
+    <title>JSDoc: Source: pages/Home.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: pages/Private/Private.jsx</h1>
+    <h1 class="page-title">Source: pages/Home.jsx</h1>
 
     
 
@@ -26,28 +26,65 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react'
-import {useSelector} from 'react-redux'
-import {Outlet, Navigate} from 'react-router-dom'
-
+            <pre class="prettyprint source linenums"><code>import { React } from 'react'
+import Hero from '../components/Hero/Hero'
+import Feature from '../components/Feature/Feature'
+import styled from 'styled-components'
 
 /**
- * Allows to protect the profile route. Profile content is located inside Outlet component
+ * Allows to show Homepage
  *
- * @return Outlet component
+ *
+ * @return A main div which includes Hero component ans a section with the Feature component
  * 
  * @version 1.0
  * 
  */
-const Private = () => {
-	const isLoggedIn = (useSelector(state => state.connection.isLoggedIn) ? useSelector(state => state.connection.isLoggedIn) : useSelector(state => state.persistedConnection.isLoggedIn))
-
+const Home = () => {
 	return (
-		isLoggedIn ? &lt;Outlet>&lt;/Outlet> : &lt;Navigate to='/login' />
+		&lt;MainLabel>
+			&lt;Hero />
+			&lt;SectionLabel>
+				&lt;TitleLabel>Features&lt;/TitleLabel>
+				&lt;Feature idValue="Contact">&lt;/Feature>
+				&lt;Feature idValue="Money">&lt;/Feature>
+				&lt;Feature idValue="Security">&lt;/Feature>
+			&lt;/SectionLabel>
+		&lt;/MainLabel>
 	)
 }
 
-export default Private</code></pre>
+const MainLabel = styled.main`
+    flex: 1;
+    @media (max-width: 720px) {
+        padding-bottom: 5rem;
+      }
+      @media (min-width: 720px) and (max-width: 920px){
+        padding-bottom: 7rem;
+      }
+`
+const SectionLabel = styled.section`
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 920px) {
+        flex-direction: row;
+      }
+`
+const TitleLabel = styled.h2`
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important; /* 2 */
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    white-space: nowrap !important; /* 3 */
+`
+
+export default Home</code></pre>
         </article>
     </section>
 

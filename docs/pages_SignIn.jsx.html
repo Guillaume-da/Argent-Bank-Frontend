@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: pages/Private/Private.jsx</title>
+    <title>JSDoc: Source: pages/SignIn.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: pages/Private/Private.jsx</h1>
+    <h1 class="page-title">Source: pages/SignIn.jsx</h1>
 
     
 
@@ -26,28 +26,51 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react'
-import {useSelector} from 'react-redux'
-import {Outlet, Navigate} from 'react-router-dom'
+            <pre class="prettyprint source linenums"><code>import { React } from 'react'
+import styled from 'styled-components'
+import {UserCircle} from '@styled-icons/fa-solid'
+import LoginForm from '../components/LoginForm/LoginForm'
 
 
 /**
- * Allows to protect the profile route. Profile content is located inside Outlet component
+ * Allows to show Signin page
  *
- * @return Outlet component
+ *
+ * @return A main div which includes the LoginForm component
  * 
  * @version 1.0
  * 
  */
-const Private = () => {
-	const isLoggedIn = (useSelector(state => state.connection.isLoggedIn) ? useSelector(state => state.connection.isLoggedIn) : useSelector(state => state.persistedConnection.isLoggedIn))
-
+const SignIn = () => {
 	return (
-		isLoggedIn ? &lt;Outlet>&lt;/Outlet> : &lt;Navigate to='/login' />
+		&lt;MainLabel>
+			&lt;SectionLabel>
+				&lt;Icon />
+				&lt;h1>Sign In&lt;/h1>
+				&lt;LoginForm />
+			&lt;/SectionLabel>
+		&lt;/MainLabel>
 	)
 }
 
-export default Private</code></pre>
+const MainLabel = styled.main`
+    flex: 1;
+    background-color: #12002b;
+`
+const SectionLabel = styled.section`
+    box-sizing: border-box;
+    background-color: white;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 3rem;
+    padding: 2rem;
+`
+const Icon = styled(UserCircle)`
+  color: black;
+  width: 16px;
+`
+
+export default SignIn</code></pre>
         </article>
     </section>
 
