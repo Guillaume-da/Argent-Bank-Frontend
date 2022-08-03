@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { ModifyUserAction } from '../../store/actions/UserAction'
 import PropTypes from 'prop-types'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 /**
  * Allows to show welcom message with the firstname and lastname of user
@@ -32,15 +34,23 @@ const Welcome = (props) => {
 					<FormLabel 
 						onSubmit={(event) => {
 							event.preventDefault()
-							changeName(userState, token)
-							setIsClicked(!isClicked)
+							if(event.target[0].value === '') {
+								toast.error('Please enter your first name')
+							}
+							if(event.target[1].value === '') {
+								toast.error('Please enter your lastname')
+							}
+							if(event.target[0].value !== '' && event.target[1].value !== ''){
+								changeName(userState, token)
+								setIsClicked(!isClicked)
+							}
 						}}>
 						<InputLabel 
 							type='text' 
 							id='newFirstName' 
 							name='newFirstName' 
 							defaultValue={firstName} 
-							placeholder={firstName} 
+							// placeholder={firstName} 
 							onChange={ (event)=> {
 								const firstName = event.target.value
 								setUserState({ ...userState, ...{ firstName }})
@@ -52,7 +62,7 @@ const Welcome = (props) => {
 							id='newLastName' 
 							name='newLastName' 
 							defaultValue={lastName} 
-							placeholder={lastName} 
+							// placeholder={lastName} 
 							onChange={ (event)=> {
 								const lastName = event.target.value
 								setUserState({ ...userState, ...{ lastName }})
