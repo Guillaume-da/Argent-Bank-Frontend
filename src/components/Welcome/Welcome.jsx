@@ -44,7 +44,7 @@ const Welcome = (props) => {
 						onSubmit={(event) => {
 							event.preventDefault()
 							handleNameChange(event)
-							if(event.target[0].value !== '' && event.target[1].value !== ''){
+							if(event.target[0].value.length > 0 && event.target[1].value.length > 0){
 								changeName(userState, token)
 								toast.success('Name changed successfully')
 								setIsClicked(!isClicked)
@@ -54,8 +54,7 @@ const Welcome = (props) => {
 							type='text' 
 							id='newFirstName' 
 							name='newFirstName' 
-							defaultValue={firstName} 
-							// placeholder={firstName} 
+							placeholder='Write your first name here'
 							onChange={ (event)=> {
 								const firstName = event.target.value
 								setUserState({ ...userState, ...{ firstName }})
@@ -65,9 +64,8 @@ const Welcome = (props) => {
 						<InputLabel 
 							type='text' 
 							id='newLastName' 
-							name='newLastName' 
-							defaultValue={lastName} 
-							// placeholder={lastName} 
+							name='newLastName'
+							placeholder='Write your lastname here'
 							onChange={ (event)=> {
 								const lastName = event.target.value
 								setUserState({ ...userState, ...{ lastName }})
