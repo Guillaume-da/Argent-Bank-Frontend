@@ -26,6 +26,15 @@ const Welcome = (props) => {
 	const [isClicked, setIsClicked] = useState(false)
 	const[userState, setUserState] = useState({firstName, lastName})
 
+	const handleNameChange = (event) => {
+		if(event.target[0].value === '') {
+			toast.error('Please enter your first name')
+		}
+		if(event.target[1].value === '') {
+			toast.error('Please enter your lastname')
+		}
+	}
+
 	return (
 		<DivLabel>
 			{isClicked ? (
@@ -34,14 +43,10 @@ const Welcome = (props) => {
 					<FormLabel 
 						onSubmit={(event) => {
 							event.preventDefault()
-							if(event.target[0].value === '') {
-								toast.error('Please enter your first name')
-							}
-							if(event.target[1].value === '') {
-								toast.error('Please enter your lastname')
-							}
+							handleNameChange(event)
 							if(event.target[0].value !== '' && event.target[1].value !== ''){
 								changeName(userState, token)
+								toast.success('Name changed successfully')
 								setIsClicked(!isClicked)
 							}
 						}}>
