@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/Private/Profile/index.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/Private/Profile/index.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { connect } from 'react-redux'
+import Welcome from '../../../components/Welcome'
+import styled from 'styled-components'
+import { GetUserAction } from '../../../store/actions/UserAction'
+import PropTypes from 'prop-types'
+
+
+/**
+ * Allows to show user profile
+ *
+ * @param {object} props - Contains token, firstname and lastname
+ *
+ * @return User profile page
+ * 
+ * @version 1.0
+ * 
+ */
+const Profile = (props) => {
+	const token = (useSelector(state => (state.connection.auth.body.token)) ? useSelector(state => (state.connection.auth.body.token)) : useSelector(state => (state.persistedConnection.auth.body.token)))
+	const firstName = useSelector(state => state.user.user.body.firstName)
+	const lastName = useSelector(state => state.user.user.body.lastName)
+	const {access} = props
+	useEffect(() => {
+		access(token)
+	}, [token])
+
+	return(
+		&lt;MainLabel>
+			&lt;Welcome firstNameValue={firstName} lastNameValue={lastName}/>
+			&lt;PageTitle>Accounts&lt;/PageTitle>
+			&lt;SectionLabel>
+				&lt;WrapperDivLabel>
+					&lt;TitleLabel>Argent Bank Checking (x8349)&lt;/TitleLabel>
+					&lt;AmountParagraph>$2,082.79&lt;/AmountParagraph>
+					&lt;DescriptionParagraph>Available Balance&lt;/DescriptionParagraph>
+				&lt;/WrapperDivLabel>
+				&lt;ButtonWrapper>
+					&lt;ButtonLabel>View transactions&lt;/ButtonLabel>
+				&lt;/ButtonWrapper>
+			&lt;/SectionLabel>
+			&lt;SectionLabel>
+				&lt;WrapperDivLabel>
+					&lt;TitleLabel>Argent Bank Savings (x6712)&lt;/TitleLabel>
+					&lt;AmountParagraph>$10,928.42&lt;/AmountParagraph>
+					&lt;DescriptionParagraph>Available Balance&lt;/DescriptionParagraph>
+				&lt;/WrapperDivLabel>
+				&lt;ButtonWrapper>
+					&lt;ButtonLabel>View transactions&lt;/ButtonLabel>
+				&lt;/ButtonWrapper>
+			&lt;/SectionLabel>
+			&lt;SectionLabel>
+				&lt;WrapperDivLabel>
+					&lt;TitleLabel>Argent Bank Credit Card (x8349)&lt;/TitleLabel>
+					&lt;AmountParagraph>$184.30&lt;/AmountParagraph>
+					&lt;DescriptionParagraph>Current Balance&lt;/DescriptionParagraph>
+				&lt;/WrapperDivLabel>
+				&lt;ButtonWrapper>
+					&lt;ButtonLabel>View transactions&lt;/ButtonLabel>
+				&lt;/ButtonWrapper>
+			&lt;/SectionLabel>
+		&lt;/MainLabel>
+	)
+}
+
+Profile.propTypes = {
+	access: PropTypes.func.isRequired,
+}
+
+const MainLabel = styled.main`
+    flex: 1;
+    background-color: #12002b;
+    @media (max-width: 720px) {
+        padding-bottom: 5rem;
+      }
+`
+const SectionLabel = styled.section`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    background-color: #fff;
+    width: 80%;
+    margin: 0 auto;
+    flex-direction: column;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    text-align: left;
+    margin-bottom: 2rem;
+    @media (min-width: 720px) {
+        flex-direction: row;
+      }
+`
+const WrapperDivLabel = styled.div`
+    width: 100%;
+    flex: 1;
+`
+const TitleLabel = styled.h3`
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: normal;
+`
+const AmountParagraph = styled.p`
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+`
+const DescriptionParagraph = styled.p`
+    margin: 0;
+`
+const ButtonLabel = styled.button`
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    border-color: #00bc77;
+    background-color: #00bc77;
+    color: #fff;
+    @media (min-width: 720px) {
+        width: 200px;
+      }
+`
+const ButtonWrapper = styled.div`
+    width: 100%;
+    flex: 1;
+    @media (min-width: 720px) {
+        flex: 0;
+      }
+`
+const PageTitle  = styled.h1`
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important; /* 2 */
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    white-space: nowrap !important; /* 3 */ 
+`
+
+const mapStateToProps = (state) => {
+	return {
+		user: state,
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	
+	return {
+		access: (token)=> {
+			dispatch(GetUserAction(token))
+		},
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Error">Error</a></li><li><a href="global.html#GetUserAction">GetUserAction</a></li><li><a href="global.html#LoginAuthAction">LoginAuthAction</a></li><li><a href="global.html#ModifyUserAction">ModifyUserAction</a></li><li><a href="global.html#Private">Private</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Welcome">Welcome</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Tue Aug 02 2022 17:50:33 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -18,8 +18,8 @@ function App() {
 			<Routes location={location} key={location.pathname}>
 				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<SignIn />} />
-				<Route path="/private" element={<Private />}>
-					<Route path="/private/profile" element={<Profile />} />
+				<Route element={<Private />}>
+					<Route path="/profile" element={<Profile />} />
 				</Route>
 				<Route path="*" element={<Error />} />
 			</Routes> 
