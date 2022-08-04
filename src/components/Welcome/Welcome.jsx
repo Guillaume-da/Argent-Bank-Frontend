@@ -43,20 +43,20 @@ const Welcome = (props) => {
 						onSubmit={(event) => {
 							event.preventDefault()
 							handleNameChange(event)
-							if(event.target[0].value.length > 0 && event.target[1].value.length > 0){
-								changeName(userState, token)
-								toast.success('Name changed successfully')
-								setIsClicked(!isClicked)
-							}
+							changeName(userState, token)
+							toast.success('Name changed successfully')
+							setIsClicked(!isClicked)
 						}}>
 						<InputLabel 
 							type='text' 
 							id='newFirstName' 
 							name='newFirstName' 
-							placeholder='Write your first name here'
+							defaultValue={firstName}
 							onChange={ (event)=> {
+								console.log('before',userState)
 								const firstName = event.target.value
 								setUserState({ ...userState, ...{ firstName }})
+								console.log('after',userState)
 							}} 
 						>
 						</InputLabel>
@@ -64,7 +64,7 @@ const Welcome = (props) => {
 							type='text' 
 							id='newLastName' 
 							name='newLastName'
-							placeholder='Write your lastname here'
+							defaultValue={lastName}
 							onChange={ (event)=> {
 								const lastName = event.target.value
 								setUserState({ ...userState, ...{ lastName }})
@@ -129,7 +129,7 @@ const mapStateToProps = (state) => {
  * @version 1.0
  * 
  */
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, props) => {
 	
 	return {
 
@@ -143,6 +143,12 @@ const mapDispatchToProps = (dispatch) => {
 		 * 
 		 */
 		changeName: (userState, token)=> {
+			if(userState.firstName === '') {
+				userState.firstName = props.firstNameValue
+			}
+			if(userState.lastName === '') {
+				userState.lastName = props.lastNameValue
+			}
 			dispatch(ModifyUserAction(userState, token))
 		},
 	}
