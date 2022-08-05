@@ -1,5 +1,19 @@
-# Getting Started with Create React App
+# Argent Bank
 
+This codebase contains the code needed to run the frontend for Argent Bank.  
+Authentification with JWT, state management with Redux.
+
+# Backend
+
+This project works with an API that you can download here:  
+[https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API)
+
+# Documentation
+
+To learn more about how the application works, you can visit:  
+[http://127.0.0.1:5500/docs/](http://127.0.0.1:5500/docs/)
+
+# Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

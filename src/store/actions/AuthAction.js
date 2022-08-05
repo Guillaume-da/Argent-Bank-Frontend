@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css'
  * @param {object} userState - datas coming from loging form (mail and password)
  * @param {function} navigate = useNavigate()
  * @param {boolean} rememberMeState - allows to know if remember me option was clicked in form
- * @param {function} setErrorHandler - allows to set errorHandler whiwh is used by useState() in loging form
+ * @param {function} setErrorHandler - allows to set errorHandler which is used by useState() in loging form
  *
  * @version 1.0
  * 
