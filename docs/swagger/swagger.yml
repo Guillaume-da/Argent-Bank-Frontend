@@ -181,7 +181,7 @@ paths:
           required: true
         - in: body
           name: body
-          description: Login Payload
+          description: Transactions Payload
           required: true
           schema:
             $ref: '#/definitions/Transactions'
@@ -213,10 +213,10 @@ paths:
           required: true
         - in: body
           name: body
-          description: Update details of user transaction
+          description: Transaction Payload
           required: true
           schema:
-            $ref: '#/definitions/TransactionsApiResponse'
+            $ref: '#/definitions/Transactions'
       produces:
         - application/json
       responses:
@@ -245,7 +245,7 @@ paths:
           required: true
         - in: body
           name: body
-          description: Update details of user transaction
+          description: Delete details of user transaction
           required: true
           schema:
             $ref: '#/definitions/Transactions'
@@ -362,4 +362,4 @@ definitions:
         description: transaction category
       notes:
         type: string
-        description: user notes 
+        description: user notes  
