@@ -81,7 +81,7 @@ paths:
         '400':
           description: Invalid Fields
         '401':
-          description: Invalid Token
+          description: Unauthorized
         '500':
           description: Internal Server Error
     put:
@@ -113,7 +113,7 @@ paths:
         '400':
           description: Invalid Fields
         '401':
-          description: Invalid Token
+          description: Unauthorized
         '500':
           description: Internal Server Error
   /user/transactions:
@@ -138,7 +138,7 @@ paths:
           schema:
             $ref: '#/definitions/TransactionsApiResponse'
         '401':
-          description: Invalid Token
+          description: Unauthorized
         '500':
           description: Internal Server Error
   /user/transactions/id:
@@ -163,7 +163,7 @@ paths:
           schema:
             $ref: '#/definitions/TransactionsApiResponse'
         '401':
-          description: Invalid Token
+          description: Unauthorized
         '500':
           description: Internal Server Error
     post:
@@ -195,7 +195,7 @@ paths:
         '400':
           description: Invalid Fields
         '401':
-          description: Invalid Token
+          description: Unauthorized
         '500':
           description: Internal Server Error
     put:
@@ -227,7 +227,7 @@ paths:
         '400':
           description: Invalid Fields
         '401':
-          description: Invalid Token
+          description: Unauthorized
         '500':
           description: Internal Server Error
     delete:
@@ -259,7 +259,7 @@ paths:
         '400':
           description: Invalid Fields
         '401':
-          description: Invalid Token
+          description: Unauthorized
         '500':
           description: Internal Server Error     
 securityDefinitions:
