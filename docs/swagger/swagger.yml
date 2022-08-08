@@ -171,7 +171,7 @@ paths:
         - Bearer: []
       tags:
         - Transactions Module
-      summary: Transactions
+      summary: User single transaction API
       description: API for fetching one transaction of user
       parameters:
         - in: header
@@ -203,7 +203,7 @@ paths:
         - Bearer: []
       tags:
         - Transactions Module
-      summary: Transactions
+      summary: User single transaction API
       description: API for modify details of user transaction
       parameters:
         - in: header
@@ -362,4 +362,4 @@ definitions:
         description: transaction category
       notes:
         type: string
-        description: user notes  
+        description: user notes 
